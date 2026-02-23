@@ -26,6 +26,7 @@ from tools.views import (
 from django.http import FileResponse
 import os
 from django.conf import settings
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,5 +46,9 @@ urlpatterns = [
     lambda request: FileResponse(
         open(os.path.join(settings.BASE_DIR, "google17f3504abf2d486b.html"), "rb")
     ),
+),
+    path(
+    "sitemap.xml",
+    TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml"),
 ),
 ]
