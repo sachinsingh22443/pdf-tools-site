@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ['.onrender.com']
 
 
 # Application definition
@@ -121,7 +121,7 @@ MEDIA_URL = "/media/"
 
 import os
 
-STATIC_URL = "/static/"
+# STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 import os
