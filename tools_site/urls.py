@@ -23,6 +23,9 @@ from tools.views import (
     protect_pdf,
     unlock_pdf,add_text_pdf
 )
+from django.http import FileResponse
+import os
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,4 +40,10 @@ urlpatterns = [
     path("protect-pdf/", protect_pdf, name="protect_pdf"),
     path("unlock-pdf/", unlock_pdf, name="unlock_pdf"),
     path("add-text-pdf/", add_text_pdf, name="add_text_pdf"),
+    path(
+    "google17f3504abf2d486b.html",
+    lambda request: FileResponse(
+        open(os.path.join(settings.BASE_DIR, "google17f3504abf2d486b.html"), "rb")
+    ),
+),
 ]
