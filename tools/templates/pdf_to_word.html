@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}PDF to Word Converter Online Free{% endblock %}
+{% block description %}Convert PDF to Word document (.docx) instantly and securely online.{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">PDF to Word Converter</h1>
+            <p class="mb-4">Convert your PDF into editable Word document.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+                {% csrf_token %}
+                
+                <input type="file" name="pdf" required class="form-control mb-3">
+
+                <button type="submit" class="btn btn-premium">
+                    Convert to Word
+                </button>
+
+                <div id="loader" style="display:none;margin-top:10px;">
+                    Processing...
+                </div>
+            </form>
+            <hr class="my-5">
+
+<h2>Convert PDF to Word Online</h2>
+<p>
+Our PDF to Word converter allows you to transform PDF files into editable Word documents.
+Easily edit text, update content, and format your document as needed.
+</p>
+
+<h3>Steps to Convert</h3>
+<ol>
+<li>Upload your PDF file.</li>
+<li>Click convert.</li>
+<li>Download the Word file.</li>
+</ol>
+
+<h3>Why Convert PDF to Word?</h3>
+<ul>
+<li>Edit existing content</li>
+<li>Update forms</li>
+<li>Reuse document content</li>
+<li>Modify formatting</li>
+</ul>
+
+<h3>Is This Tool Free?</h3>
+<p>
+Yes, our PDF to Word converter is completely free and works on all devices.
+</p>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+{% endblock %}

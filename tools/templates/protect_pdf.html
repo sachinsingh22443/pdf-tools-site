@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Protect PDF Online Free{% endblock %}
+{% block description %}Add password protection to your PDF file securely online.{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">Protect PDF</h1>
+            <p class="mb-4">Add password to secure your PDF file.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+                {% csrf_token %}
+                
+                <input type="file" name="pdf" required class="form-control mb-3">
+
+                <input type="password" name="password" 
+                       placeholder="Enter Password" 
+                       required class="form-control mb-3">
+
+                <button type="submit" class="btn btn-premium">
+                    Protect PDF
+                </button>
+
+                <div id="loader" style="display:none;margin-top:10px;">
+                    Processing...
+                </div>
+            </form>
+            <hr class="my-5">
+
+<h2>Password Protect PDF Online</h2>
+<p>
+Add password protection to your PDF files to keep them secure.
+Our tool allows you to encrypt your PDF with a custom password instantly.
+</p>
+
+<h3>How It Works</h3>
+<ol>
+<li>Upload your PDF file.</li>
+<li>Enter a strong password.</li>
+<li>Download your protected PDF.</li>
+</ol>
+
+<h3>Benefits</h3>
+<ul>
+<li>Protect confidential documents</li>
+<li>Prevent unauthorized access</li>
+<li>Simple and fast encryption</li>
+<li>No watermark added</li>
+</ul>
+
+<h3>Is My File Safe?</h3>
+<p>
+Yes, your file is processed securely and not permanently stored on our servers.
+</p>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+{% endblock %}

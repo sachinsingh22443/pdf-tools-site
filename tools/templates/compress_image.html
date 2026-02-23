@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">Compress Image Online Free</h1>
+            <p class="mb-4">Reduce image size to selected KB.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input type="file" name="image" required 
+                       class="form-control mb-3">
+
+                <select name="target_size" class="form-select mb-4">
+                    <option value="50">50 KB</option>
+                    <option value="100" selected>100 KB (Recommended)</option>
+                    <option value="200">200 KB</option>
+                    <option value="300">300 KB</option>
+                </select>
+
+                <button type="submit" class="btn btn-premium">
+                    Compress Now
+                </button>
+            </form>
+            <hr class="my-5">
+
+<h2>Compress Image Online</h2>
+<p>
+Reduce image file size without significant quality loss using our image compressor tool.
+Ideal for email attachments and website optimization.
+</p>
+
+<h3>How It Works</h3>
+<p>
+Our system reduces file size while maintaining visual clarity.
+Upload your image and download the compressed version instantly.
+</p>
+
+<h3>Supported Formats</h3>
+<ul>
+<li>JPG</li>
+<li>PNG</li>
+<li>JPEG</li>
+</ul>
+
+            <div class="ad-box mt-4">
+                Ad Space (Google AdSense)
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

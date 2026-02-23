@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">Compress PDF Online Free</h1>
+            <p class="mb-4">Reduce PDF file size easily.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input type="file" name="pdf" required 
+                       class="form-control mb-4">
+
+                <button type="submit" class="btn btn-premium">
+                    Compress Now
+                </button>
+            </form>
+            <hr class="my-5">
+
+<h2>Compress PDF Online Without Losing Quality</h2>
+<p>
+Use our free PDF compression tool to reduce file size while maintaining good quality.
+Perfect for email attachments, job applications, and online submissions.
+</p>
+
+<h3>How It Works</h3>
+<p>
+Our system uses advanced compression techniques to reduce PDF file size efficiently.
+Upload your file and download the compressed version instantly.
+</p>
+
+<h3>Benefits</h3>
+<ul>
+<li>Reduce PDF size quickly</li>
+<li>Maintain readable quality</li>
+<li>Fast processing</li>
+<li>No signup required</li>
+</ul>
+
+<h3>Common Uses</h3>
+<p>
+Students, office professionals, and government form submissions often require smaller file sizes.
+This tool helps you meet upload size limits easily.
+</p>
+
+            <div class="ad-box mt-4">
+                Ad Space (Google AdSense)
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

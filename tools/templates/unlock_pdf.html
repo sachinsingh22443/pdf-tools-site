@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Unlock PDF Online Free{% endblock %}
+{% block description %}Remove password from your PDF securely online.{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">Unlock PDF</h1>
+            <p class="mb-4">Remove password from your PDF securely.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+                {% csrf_token %}
+                
+                <input type="file" name="pdf" required class="form-control mb-3">
+
+                <input type="password" name="password" 
+                       placeholder="Enter PDF Password" 
+                       class="form-control mb-3" required>
+
+                <button type="submit" class="btn btn-premium">
+                    Unlock PDF
+                </button>
+
+                <div id="loader" style="display:none;margin-top:10px;">
+                    Processing...
+                </div>
+            </form>
+               <hr class="my-5">
+
+<h2>Unlock PDF Online</h2>
+<p>
+Remove password protection from your PDF file using our secure Unlock PDF tool.
+You must provide the correct password to unlock the file.
+</p>
+
+<h3>How to Unlock a PDF?</h3>
+<ol>
+<li>Upload your password-protected PDF.</li>
+<li>Enter the correct password.</li>
+<li>Download the unlocked file.</li>
+</ol>
+
+<h3>Why Unlock PDF?</h3>
+<ul>
+<li>Edit your document easily</li>
+<li>Remove password restrictions</li>
+<li>Share files without password</li>
+<li>Quick and secure process</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+{% endblock %}

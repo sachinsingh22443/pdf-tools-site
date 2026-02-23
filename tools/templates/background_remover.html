@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">AI Background Remover</h1>
+            <p class="mb-4">Remove image background automatically.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input type="file" name="image" required 
+                       class="form-control mb-4">
+
+                <button type="submit" class="btn btn-premium">
+                    Remove Background
+                </button>
+            </form>
+            <hr class="my-5">
+
+<h2>Remove Background from Image Online</h2>
+<p>
+Automatically remove the background from your image using AI technology.
+Download a transparent PNG file instantly.
+</p>
+
+<h3>Why Use Background Remover?</h3>
+<ul>
+<li>Create product images</li>
+<li>Design social media posts</li>
+<li>Professional photo editing</li>
+<li>Quick and automatic processing</li>
+</ul>
+
+<h3>How It Works</h3>
+<p>
+Upload your image and our AI model will detect and remove the background automatically.
+</p>
+
+            <div class="ad-box mt-4">
+                Ad Space (Google AdSense)
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

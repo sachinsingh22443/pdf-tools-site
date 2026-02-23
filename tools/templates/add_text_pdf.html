@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Add Text to PDF Online{% endblock %}
+{% block description %}Add custom text to your PDF at specific position easily online.{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">Add Text to PDF</h1>
+            <p class="mb-4">Insert custom text at specific position in PDF.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+                {% csrf_token %}
+
+                <input type="file" name="pdf" required class="form-control mb-3">
+
+                <input type="text" name="text" placeholder="Enter text"
+                       required class="form-control mb-3">
+
+                <input type="number" name="page" placeholder="Page Number (e.g. 1)"
+                       required class="form-control mb-3">
+
+                <input type="number" name="x" placeholder="X Position (e.g. 100)"
+                       required class="form-control mb-3">
+
+                <input type="number" name="y" placeholder="Y Position (e.g. 500)"
+                       required class="form-control mb-3">
+
+                <button type="submit" class="btn btn-premium">
+                    Add Text
+                </button>
+
+                <div id="loader" style="display:none;margin-top:10px;">
+                    Processing...
+                </div>
+            </form>
+           <hr class="my-5">
+
+<h2>Add Text to PDF Online</h2>
+<p>
+Insert custom text anywhere inside your PDF file.
+Useful for adding notes, signatures, or corrections.
+</p>
+
+<h3>How to Add Text?</h3>
+<ol>
+<li>Upload your PDF.</li>
+<li>Enter text and position.</li>
+<li>Download updated PDF.</li>
+</ol>
+
+<h3>Use Cases</h3>
+<ul>
+<li>Add signature text</li>
+<li>Fill missing information</li>
+<li>Add custom labels</li>
+<li>Modify documents quickly</li>
+</ul>
+        </div>
+    </div>
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+{% endblock %}

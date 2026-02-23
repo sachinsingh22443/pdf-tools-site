@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Resize Image Online Free{% endblock %}
+{% block description %}Resize your image to custom width and height easily online.{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">Resize Image</h1>
+            <p class="mb-4">Resize your image to custom dimensions.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+                {% csrf_token %}
+                
+                <input type="file" name="image" required class="form-control mb-3">
+
+                <input type="number" name="width" placeholder="Width (px)" required class="form-control mb-3">
+
+                <input type="number" name="height" placeholder="Height (px)" required class="form-control mb-3">
+
+                <button type="submit" class="btn btn-premium">
+                    Resize Image
+                </button>
+
+                <div id="loader" style="display:none;margin-top:10px;">
+                    Processing...
+                </div>
+            </form>
+
+            <hr class="my-5">
+
+<h2>Resize Image Online Free</h2>
+<p>
+Resize your image to custom width and height in pixels using our free online tool.
+Perfect for social media, websites, and document uploads.
+</p>
+
+<h3>Steps to Resize Image</h3>
+<ol>
+<li>Upload your image.</li>
+<li>Enter desired width and height.</li>
+<li>Download the resized image.</li>
+</ol>
+
+<h3>Why Resize Images?</h3>
+<ul>
+<li>Meet website upload size requirements</li>
+<li>Adjust dimensions for social media</li>
+<li>Optimize images for faster loading</li>
+</ul>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+}
+</script>
+
+{% endblock %}

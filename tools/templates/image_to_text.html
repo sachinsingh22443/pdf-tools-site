@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="glass-card text-center">
+
+            <h1 class="mb-4">Image to Text Converter</h1>
+            <p class="mb-4">Extract text from image instantly using OCR.</p>
+
+            {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endif %}
+
+   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <input type="file" name="image" required 
+           class="form-control mb-3">
+
+    <select name="language" class="form-select mb-3">
+        <option value="eng" selected>English</option>
+        <option value="hin">Hindi</option>
+        <option value="eng+hin">English + Hindi</option>
+    </select>
+
+    <button type="submit" class="btn btn-premium">
+        Extract Text
+    </button>
+</form>
+
+            {% if text %}
+            <div class="mt-4 text-start">
+                <h5>Extracted Text:</h5>
+                <textarea class="form-control" rows="8">{{ text }}</textarea>
+                <button onclick="copyText()" class="btn btn-premium mt-2">
+    Copy Text</button>
+            </div>
+            {% endif %}
+
+        <hr class="my-5">
+
+<h2>Extract Text from Image Online (OCR)</h2>
+<p>
+Use our Image to Text tool to extract text from images instantly.
+It supports English and Hindi language recognition.
+</p>
+
+<h3>How OCR Works</h3>
+<p>
+OCR (Optical Character Recognition) scans the image and detects printed text.
+The extracted text can then be copied and edited.
+</p>
+
+<h3>Supported Formats</h3>
+<ul>
+<li>JPG</li>
+<li>PNG</li>
+<li>JPEG</li>
+</ul>
+
+<h3>Use Cases</h3>
+<ul>
+<li>Convert scanned documents into editable text</li>
+<li>Extract notes from images</li>
+<li>Digitize printed material</li>
+</ul>
+
+            <div class="ad-box mt-4">
+                Ad Space (Google AdSense)
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+function copyText() {
+    var copyText = document.querySelector("textarea");
+    copyText.select();
+    document.execCommand("copy");
+    alert("Text copied!");
+}
+</script>
+{% endblock %}
