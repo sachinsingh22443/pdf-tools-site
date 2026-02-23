@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from tools.views import merge_pdf,compress_image,jpg_to_pdf,compress_pdf,image_to_text,background_remover,home,split_pdf
+from tools.views import merge_pdf,compress_image,jpg_to_pdf,compress_pdf,home,split_pdf
 from tools.views import (
     pdf_to_word,
     resize_image,
@@ -30,8 +30,6 @@ urlpatterns = [
     path("compress-image/", compress_image, name="compress_image"),
     path("jpg-to-pdf/", jpg_to_pdf, name="jpg_to_pdf"),
     path("compress-pdf/", compress_pdf, name="compress_pdf"),
-    path("image-to-text/", image_to_text, name="image_to_text"),
-    path("background-remover/", background_remover, name="background_remover"),
     path("", home, name="home"),
     path("split-pdf/", split_pdf, name="split_pdf"),
     path("pdf-to-word/", pdf_to_word, name="pdf_to_word"),

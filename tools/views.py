@@ -2,9 +2,18 @@ from django.shortcuts import render
 from django.http import FileResponse
 from pypdf import PdfReader, PdfWriter
 import io
-import pytesseract
+from PIL import Image
+import subprocess
+import os
+from django.shortcuts import render
+from django.conf import settings
+from PIL import Image
+from django.shortcuts import render
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+
+
+    
 
 def merge_pdf(request):
     if request.method == "POST":
@@ -53,10 +62,7 @@ def merge_pdf(request):
 
 
 
-from PIL import Image
-from django.shortcuts import render
-from django.http import FileResponse
-import io
+
 
 
 def compress_image(request):
@@ -111,10 +117,7 @@ def compress_image(request):
 
 
 
-from PIL import Image
-from django.shortcuts import render
-from django.http import FileResponse
-import io
+
 
 
 def jpg_to_pdf(request):
@@ -169,11 +172,6 @@ def jpg_to_pdf(request):
     return render(request, "jpg_to_pdf.html")
 
 
-import subprocess
-import os
-from django.shortcuts import render
-from django.http import FileResponse
-from django.conf import settings
 
 
 def compress_pdf(request):
@@ -232,103 +230,8 @@ def compress_pdf(request):
     return render(request, "compress_pdf.html")
 
 
-import pytesseract
-from PIL import Image
-from django.shortcuts import render
-import numpy as np
-import cv2
-
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
-def image_to_text(request):
-    extracted_text = ""
-
-    if request.method == "POST":
-        image_file = request.FILES.get("image")
-        language = request.POST.get("language", "eng")
-
-        if not image_file:
-            return render(request, "image_to_text.html", {
-                "error": "Please upload an image."
-            })
-
-        try:
-            img = Image.open(image_file)
-
-            # Convert PIL to OpenCV
-            img_np = np.array(img)
-
-            # Convert to grayscale
-            gray = cv2.cvtColor(img_np, cv2.COLOR_BGR2GRAY)
-
-            # Apply adaptive threshold (BETTER than simple threshold)
-            thresh = cv2.adaptiveThreshold(
-                gray,
-                255,
-                cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                cv2.THRESH_BINARY,
-                11,
-                2
-            )
-
-            # Optional: Remove noise
-            kernel = np.ones((1, 1), np.uint8)
-            thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
-
-            # Use better OCR config
-            custom_config = r'--oem 3 --psm 6'
-
-            extracted_text = pytesseract.image_to_string(
-                thresh,
-                lang=language,
-                config=custom_config
-            )
-
-        except Exception as e:
-            print("OCR Error:", str(e))
-            return render(request, "image_to_text.html", {
-                "error": "OCR processing failed."
-            })
-
-    return render(request, "image_to_text.html", {
-        "text": extracted_text
-    })
-    
-    
-from django.shortcuts import render
-from django.http import FileResponse
-from rembg import remove
-from PIL import Image
-import io
-
-
-def background_remover(request):
-    original_url = None
-    processed_url = None
-
-    if request.method == "POST":
-        image_file = request.FILES.get("image")
-
-        input_image = Image.open(image_file)
-        output_image = remove(input_image)
-
-        original_url = image_file
-        buffer = io.BytesIO()
-        output_image.save(buffer, format="PNG")
-        buffer.seek(0)
-
-        return FileResponse(buffer, as_attachment=True, filename="bg_removed.png")
-
-    return render(request, "background_remover.html", {
-        "original": original_url,
-        "processed": processed_url
-    })
-    
-from django.shortcuts import render
-
-
-from django.shortcuts import render
 
 
 def home(request):
@@ -346,23 +249,16 @@ def home(request):
     image_tools = [
         {"name": "Image Compressor", "url": "/compress-image/"},
         {"name": "Resize Image", "url": "/resize-image/"},
-        {"name": "Background Remover", "url": "/background-remover/"},
     ]
 
-    ai_tools = [
-        {"name": "Image to Text (OCR)", "url": "/image-to-text/"},
-    ]
-
+    
     return render(request, "home.html", {
         "pdf_tools": pdf_tools,
         "image_tools": image_tools,
-        "ai_tools": ai_tools
+        
     })
     
 from pypdf import PdfReader, PdfWriter
-from django.shortcuts import render
-from django.http import FileResponse
-import io
 
 
 def split_pdf(request):
